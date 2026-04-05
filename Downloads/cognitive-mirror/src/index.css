@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-display: "Playfair Display", serif;
+  
+  --color-bg: #f5f5f0;
+  --color-ink: #1a1a1a;
+  --color-primary: #1a1a1a;
+  --color-accent: #5A5A40;
+  --color-card: #ffffff;
+  --color-muted: #8E9299;
+
+  /* Override default colors to avoid oklch for html2canvas compatibility */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-900: #7f1d1d;
+
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-900: #064e3b;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  --color-blue-50: #eff6ff;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+
+  --color-amber-50: #fffbeb;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  
+  --radius-xl: 32px;
+  --radius-2xl: 48px;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-ink font-sans antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display font-black;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card rounded-xl border border-black/5 shadow-sm;
+  }
+  
+  .col-header {
+    @apply font-sans text-[10px] font-bold uppercase tracking-widest text-muted;
+  }
+  
+  .data-value {
+    @apply font-sans text-sm font-medium;
+  }
+  
+  .data-row {
+    @apply flex items-center justify-between py-3 border-b border-black/5;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-ink to-ink/70;
+  }
+
+  .sidebar-text {
+    @apply [writing-mode:vertical-rl] rotate-180 text-[10px] font-bold uppercase tracking-widest text-muted hover:text-ink transition-colors;
+  }
+}
+
+/* Iridescent Blob Animation */
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(10px, -15px) scale(1.05); }
+  66% { transform: translate(-15px, 10px) scale(0.95); }
+}
+
+.blob-container {
+  @apply relative flex items-center justify-center;
+}
+
+.blob-shape {
+  @apply w-full h-full rounded-full blur-3xl opacity-40 animate-[blob-float_10s_infinite_alternate];
+  background: radial-gradient(circle at center, #ff9a9e 0%, #fad0c4 20%, #fbc2eb 40%, #a18cd1 60%, #84fab0 80%, #8fd3f4 100%);
+}
